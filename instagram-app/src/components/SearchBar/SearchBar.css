@@ -1,0 +1,20 @@
+.header {
+  margin: 0;
+  width: 100%;
+  height: auto;
+  border: 1px solid green;
+}
+
+.headerContent {
+  width: 70%;
+  height: 20%;
+  padding: 1.8%;
+  margin-left: 10%;
+  border: 1px solid red;
+}
+
+.instagramTextImage {
+  width: 100px;
+  height: auto;
+  border: 1px solid black;
+}
