@@ -5,12 +5,12 @@ function SearchBar() {
   return (
     <div className="header">
       <div className="headerContent">
-        <img src="../img/instagramText.png" className="instagramTextImage" />
-        <img src="" />
-        <input type="text" value="search" />
-        <img src="" />
-        <img src="" />
-        <img src="" />
+        <img src="../img/instagramLogos.png" className="instagramLogoImage" />
+        <input type="text" className="searchText" />
+        <img
+          src="../img/instagramAccessory.png"
+          className="instagramAccesory"
+        />
       </div>
     </div>
   );
