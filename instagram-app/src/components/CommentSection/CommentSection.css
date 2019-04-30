@@ -15,8 +15,9 @@
 }
 
 .addCommentText {
-  width: 99%;
+  width: 85%;
   height: 50px;
+  border: 0px;
 }
 
 ::placeholder {
@@ -27,4 +28,22 @@
 
 .addCommentText:focus {
   outline: 0;
+}
+
+.addCommentContainer {
+  display: flex;
+  border-top: 1px solid lightgray;
+}
+
+.addCommentBtn {
+  width: 14%;
+  font-family: Arial, Helvetica, sans-serif;
+  color: lightgray;
+  font-size: 1rem;
+  background-color: white;
+  border: 0px;
+}
+
+.addCommentBtn:hover {
+  color: darkgray;
 }

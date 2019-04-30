@@ -9,13 +9,16 @@ import PostContainerList from "./components/PostContainer/PostContainerList";
 import dummyData from "./dummy-data";
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    console.log(dummyData);
-    this.state = {
+  state = {
+    posts: []
+  };
+
+  componentDidMount() {
+    this.setState({
       posts: dummyData
-    };
+    });
   }
+
   render() {
     console.log("number of posts" + this.state.posts);
     return (
