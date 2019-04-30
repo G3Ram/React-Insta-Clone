@@ -1,6 +1,5 @@
 import React from "react";
 import "./PostContainer.css";
-import CommentSectionList from "../CommentSection/CommentSectionList";
 import CommentSection from "../CommentSection/CommentSection";
 import PropTypes from "prop-types";
 
@@ -14,12 +13,11 @@ function PostContainer(props) {
       <section className="postImageSection">
         <img src={props.post.imageUrl} className="postImage" />
       </section>
-      <section className="postCommentDisplaySection">
+      <section className="postCommentsHeader">
         <p>{props.post.likes} likes</p>
-        <CommentSectionList comments={props.post.comments} />
       </section>
-      <section className="postCommentSection">
-        <CommentSection />
+      <section>
+        <CommentSection comments={props.post.comments} />
       </section>
     </div>
   );
@@ -34,5 +32,9 @@ PostContainer.propTypes = {
     timestamp: PropTypes.string.isRequired,
     comments: PropTypes.arrayOf(PropTypes.object).isRequired
   })
+};
+
+PostContainer.defaultProps = {
+  post: []
 };
 export default PostContainer;
