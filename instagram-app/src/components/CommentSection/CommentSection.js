@@ -47,18 +47,20 @@ class CommentSection extends React.Component {
             </section>
           ))}
         </div>
-        <div className="addCommentContainer">
-          <input
-            type="text"
-            className="addCommentText"
-            placeholder="Add a comment"
-            value={this.state.userComment}
-            onChange={this.handleChanges}
-          />
-          <button className="addCommentBtn" onClick={this.addComments}>
-            Post
-          </button>
-        </div>
+        <form onSubmit={this.addComments}>
+          <div className="addCommentContainer">
+            <input
+              type="text"
+              className="addCommentText"
+              placeholder="Add a comment"
+              value={this.state.userComment}
+              onChange={this.handleChanges}
+            />
+            <button className="addCommentBtn" onClick={this.addComments}>
+              Post
+            </button>
+          </div>
+        </form>
       </div>
     );
   }

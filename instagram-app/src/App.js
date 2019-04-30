@@ -10,21 +10,47 @@ import dummyData from "./dummy-data";
 
 class App extends React.Component {
   state = {
-    posts: []
+    posts: [],
+    userInput: ""
   };
 
   componentDidMount() {
     this.setState({
-      posts: dummyData
+      posts: dummyData,
+      userInput: ""
     });
   }
+  searchPosts = e => {
+    e.preventDefault();
+    console.log("Value of the event is " + this.state.userInput);
+    const userInput = e.target.value;
+    this.setState(prevState => {
+      const filteredPosts = prevState.posts.filter(post => {
+        return post.username.includes(this.state.userInput);
+      });
+      return {
+        posts: filteredPosts,
+        userInput: ""
+      };
+    });
+  };
+  handleChange = e => {
+    e.preventDefault();
+    this.setState({
+      userInput: e.target.value
+    });
+  };
 
   render() {
     console.log("number of posts" + this.state.posts);
     return (
       <div className="App">
         <header>
-          <SearchBar />
+          <SearchBar
+            onSubmit={this.searchPosts}
+            userInput={this.state.userInput}
+            handleChange={this.handleChange}
+          />
           <PostContainerList posts={this.state.posts} />
         </header>
       </div>
