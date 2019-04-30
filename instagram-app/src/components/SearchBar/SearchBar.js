@@ -6,7 +6,7 @@ function SearchBar() {
     <div className="header">
       <div className="headerContent">
         <img src="../img/instagramLogos.png" className="instagramLogoImage" />
-        <input type="text" className="searchText" />
+        <input type="text" className="searchText" placeholder="Search" />
         <img
           src="../img/instagramAccessory.png"
           className="instagramAccesory"

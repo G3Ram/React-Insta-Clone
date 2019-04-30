@@ -1,0 +1,29 @@
+.commenterName {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  margin-right: 10px;
+}
+
+.commmentText {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+}
+
+.commentSection {
+  padding-bottom: 5px;
+}
+
+.addCommentText {
+  width: 99%;
+  height: 50px;
+}
+
+::placeholder {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  color: lightgray;
+}
+
+.addCommentText:focus {
+  outline: 0;
+}

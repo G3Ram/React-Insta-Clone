@@ -1,5 +1,6 @@
 import React from "react";
 import PostContainer from "./PostContainer";
+import PropTypes from "prop-types";
 
 function PostContainerList(props) {
   return (
@@ -10,5 +11,9 @@ function PostContainerList(props) {
     </div>
   );
 }
+
+PostContainerList.propTypes = {
+  posts: PropTypes.arrayOf(PropTypes.object)
+};
 
 export default PostContainerList;
