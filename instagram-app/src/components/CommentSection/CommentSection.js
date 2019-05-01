@@ -4,16 +4,9 @@ import PropsType from "prop-types";
 
 class CommentSection extends React.Component {
   state = {
-    comments: [],
-    userName: "G3Ram",
-    userComment: ""
+    userComment: "",
+    likes: this.props.likes
   };
-
-  componentDidMount() {
-    this.setState({
-      comments: this.props.comments
-    });
-  }
 
   handleChanges = e => {
     this.setState({
@@ -23,20 +16,43 @@ class CommentSection extends React.Component {
 
   addComments = e => {
     e.preventDefault();
-    console.log(this.state.comments.length);
-    this.setState({
-      comments: this.state.comments.push({
-        username: "G3Ram",
-        text: this.state.userComment
-      }),
-      userComment: ""
+    console.log(
+      "---------------COMMENT SECTION -----------ADD COMMENTS ---" +
+        this.state.userComment
+    );
+    console.log(
+      "---------------COMMENT SECTION -----------ADD COMMENTS ---" +
+        this.props.postId
+    );
+    this.props.onSubmit(this.state.userComment, this.props.postId);
+    this.setState({ userComment: "" });
+  };
+
+  handleClick = e => {
+    this.setState(prevState => {
+      return {
+        likes: prevState.likes + 1
+      };
     });
-    console.log(this.state.comments.length);
+    this.props.updateLikes(this.state.likes, this.props.postId);
+    console.log(
+      "********* POST CONTIANER :: HANDLE CLICK ********* LIKES IN STATE IS " +
+        this.state.likes
+    );
   };
 
   render() {
     return (
       <div>
+        <section className="postCommentsHeader">
+          <img
+            src="../img/iconHeart.png"
+            className="likeHeart"
+            onClick={this.handleClick}
+            alt="heart icon"
+          />
+          <p>{this.state.likes} likes</p>
+        </section>
         <div>
           {this.props.comments.map((comment, index) => (
             <section key={index} className="commentSection">
@@ -51,12 +67,18 @@ class CommentSection extends React.Component {
           <div className="addCommentContainer">
             <input
               type="text"
+              name="comment"
               className="addCommentText"
               placeholder="Add a comment"
               value={this.state.userComment}
               onChange={this.handleChanges}
             />
-            <button className="addCommentBtn" onClick={this.addComments}>
+            <button
+              type="submit"
+              name="add"
+              className="addCommentBtn"
+              onClick={this.addComments}
+            >
               Post
             </button>
           </div>

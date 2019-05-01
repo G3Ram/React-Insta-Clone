@@ -1,29 +1,42 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import "./components/SearchBar/SearchBar";
 import SearchBar from "./components/SearchBar/SearchBar";
-import PostContainer from "./components/PostContainer/PostContainer";
-import CommentSection from "./components/CommentSection/CommentSection";
 import PostContainerList from "./components/PostContainer/PostContainerList";
 import dummyData from "./dummy-data";
 
 class App extends React.Component {
-  state = {
-    posts: [],
-    userInput: ""
-  };
+  constructor() {
+    super();
+    console.log("**********  constructor  ************");
+    this.state = {
+      posts: [],
+      userInput: ""
+    };
+  }
+
+  componentWillMount() {
+    localStorage.getItem("posts") &&
+      this.setState({
+        posts: JSON.parse(localStorage.getItem("posts"))
+      });
+  }
 
   componentDidMount() {
-    this.setState({
-      posts: dummyData,
-      userInput: ""
-    });
+    console.log("**********  component did mount  ************");
+    if (!localStorage.getItem("posts")) {
+      this.setState({
+        posts: dummyData
+      });
+    } else {
+      console.log("Using data from local storage");
+    }
   }
+
   searchPosts = e => {
+    console.log("**********  search posts  ************");
     e.preventDefault();
     console.log("Value of the event is " + this.state.userInput);
-    const userInput = e.target.value;
     this.setState(prevState => {
       const filteredPosts = prevState.posts.filter(post => {
         return post.username.includes(this.state.userInput);
@@ -34,6 +47,7 @@ class App extends React.Component {
       };
     });
   };
+
   handleChange = e => {
     e.preventDefault();
     this.setState({
@@ -41,8 +55,44 @@ class App extends React.Component {
     });
   };
 
+  componentWillUpdate(nextProps, nextState) {
+    localStorage.setItem("posts", JSON.stringify(nextState.posts));
+  }
+
+  addComments = (userComment, postId) => {
+    console.log("----------INVOKING USER COMMENTS ---------------");
+    const newUserComment = { username: "G3Ram", text: userComment };
+    console.log("user comments " + newUserComment.text);
+    this.setState(prevState => {
+      const updatedPosts = prevState.posts.map((post, index) => {
+        if (index === postId) {
+          post.comments.push(newUserComment);
+        }
+        return post;
+      });
+      return {
+        posts: updatedPosts,
+        userInput: ""
+      };
+    });
+  };
+
+  updateLikes = (likes, postId) => {
+    this.setState(prevState => {
+      const updatedPosts = prevState.posts.map((post, index) => {
+        if (index === postId) {
+          post.likes = likes;
+        }
+        return post;
+      });
+      return {
+        posts: updatedPosts,
+        userInput: ""
+      };
+    });
+  };
+
   render() {
-    console.log("number of posts" + this.state.posts);
     return (
       <div className="App">
         <header>
@@ -51,7 +101,11 @@ class App extends React.Component {
             userInput={this.state.userInput}
             handleChange={this.handleChange}
           />
-          <PostContainerList posts={this.state.posts} />
+          <PostContainerList
+            posts={this.state.posts}
+            onSubmit={this.addComments}
+            updateLikes={this.updateLikes}
+          />
         </header>
       </div>
     );

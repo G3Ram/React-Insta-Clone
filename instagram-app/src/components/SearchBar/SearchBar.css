@@ -52,6 +52,7 @@
   width: 205px;
   height: 23px;
   margin-top: 1%;
+  font-family: FontAwesome, "Merriweather Sans", sans-serif;
 }
 
 .searchText::placeholder {
