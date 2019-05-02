@@ -3,6 +3,7 @@ import "../../App.css";
 import SearchBar from "../SearchBar/SearchBar";
 import PostContainerList from "./PostContainerList";
 import dummyData from "../../dummy-data";
+//import styled from "styled-components";
 
 // The PostPage
 class PostPage extends React.Component {
@@ -154,12 +155,12 @@ class PostPage extends React.Component {
             handleChange={this.handleChange}
           />
           {searchReturnVal}
-          <PostContainerList
-            posts={this.state.posts}
-            onSubmit={this.addComments}
-            updateLikes={this.updateLikes}
-          />
         </header>
+        <PostContainerList
+          posts={this.state.posts}
+          onSubmit={this.addComments}
+          updateLikes={this.updateLikes}
+        />
       </div>
     );
   }

@@ -1,53 +1,3 @@
-.header {
-  margin: 0;
-  width: 100%;
-  height: auto;
-  border-bottom: 1px solid gray;
-}
-
-.headerContent {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 80%;
-  height: 20%;
-  margin-left: 15%;
-  margin-bottom: 1%;
-  padding-top: 1.5%;
-  border: 0px solid red;
-  align-content: space-around;
-  justify-content: flex-start;
-}
-
-.instagramAccesory {
-  width: 25px;
-  height: 25px;
-  margin-left: 30px;
-  border: 0px solid black;
-}
-
-.instagramAccesory:first-child {
-  margin-left: 230px;
-}
-
-.instagramLogoImage {
-  width: 30px;
-  margin-top: 2px;
-  margin-left: 10px;
-  height: 30px;
-  border: 0px solid black;
-  padding: 0;
-}
-
-.instagramTextImage {
-  width: 100px;
-  margin-top: 5px;
-  margin-left: 20px;
-  height: 30px;
-  border: 0px solid black;
-  padding: 0;
-}
-
 .searchText {
   width: 205px;
   height: 23px;
@@ -56,7 +6,6 @@
 }
 
 .searchText::placeholder {
-  background-image: url("/instagram-app/public/img/iconSearch.png");
   text-align: center;
 }
 
@@ -81,9 +30,4 @@
 
 .accessorySection {
   display: flex;
-}
-
-.searchWarning {
-  margin-left: 5%;
-  color: red;
 }

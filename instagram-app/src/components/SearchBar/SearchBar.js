@@ -1,21 +1,71 @@
 import React from "react";
 import "./SearchBar.css";
+import styled from "styled-components";
+
+// Styled components
+const HeaderDiv = styled.div`
+  margin: 0;
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid gray;
+`;
+
+const HeaderContentDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 80%;
+  height: 20%;
+  margin-left: 15%;
+  margin-bottom: 1%;
+  padding-top: 1.5%;
+  border: 0px solid red;
+  align-content: space-around;
+  justify-content: flex-start;
+`;
+
+const InstagramAccessoryImage = styled.img`
+  width: 25px;
+  height: 25px;
+  margin-left: 30px;
+  border: 0px solid black;
+
+  :first-child {
+    margin-left: 250px;
+  }
+`;
+
+const InstagramLogoImage = styled.img`
+  width: 30px;
+  margin-top: 2px;
+  margin-left: 10px;
+  height: 30px;
+  border: 0px solid black;
+  padding: 0;
+`;
+
+const InstagramTextImage = styled.img`
+  width: 100px;
+  margin-top: 5px;
+  margin-left: 20px;
+  height: 30px;
+  border: 0px solid black;
+  padding: 0;
+`;
 
 function SearchBar(props) {
   return (
     <form onSubmit={props.onSubmit}>
-      <div className="header">
-        <div className="headerContent">
+      <HeaderDiv>
+        <HeaderContentDiv>
           <div className="headerSection">
-            <img
+            <InstagramLogoImage
               src="../img/iconInstagram.png"
-              className="instagramLogoImage"
               alt="instagram logo"
             />
             <div className="verticalLine" />
-            <img
+            <InstagramTextImage
               src="../img/instagramText.png"
-              className="instagramTextImage"
               alt="instagram logo"
             />
           </div>
@@ -29,24 +79,21 @@ function SearchBar(props) {
             />
           </div>
           <div className="accessorySection">
-            <img
+            <InstagramAccessoryImage
               src="../img/iconCompass.png"
-              className="instagramAccesory"
               alt="compass icon"
             />
-            <img
+            <InstagramAccessoryImage
               src="../img/iconHeart.png"
-              className="instagramAccesory"
               alt="heart icon"
             />
-            <img
+            <InstagramAccessoryImage
               src="../img/iconProfile.png"
-              className="instagramAccesory"
               alt="profile icon"
             />
           </div>
-        </div>
-      </div>
+        </HeaderContentDiv>
+      </HeaderDiv>
     </form>
   );
 }
