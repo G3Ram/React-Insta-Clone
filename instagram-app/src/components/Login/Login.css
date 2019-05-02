@@ -1,5 +1,5 @@
 .loginForm {
-  margin-top: 1%;
+  margin-top: 5%;
   margin-bottom: 1%;
   margin-left: 38%;
   width: 24%;
@@ -15,8 +15,8 @@
 .signupForm {
   margin-top: 0%;
   margin-left: 38%;
-  width: 23%;
-  height: 36px;
+  width: 23.4%;
+  height: 70px;
   border: 1px solid lightgray;
   font-size: 0.9rem;
   text-align: center;

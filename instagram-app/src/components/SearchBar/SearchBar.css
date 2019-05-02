@@ -82,3 +82,8 @@
 .accessorySection {
   display: flex;
 }
+
+.searchWarning {
+  margin-left: 5%;
+  color: red;
+}

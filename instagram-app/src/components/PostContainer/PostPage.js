@@ -4,50 +4,79 @@ import SearchBar from "../SearchBar/SearchBar";
 import PostContainerList from "./PostContainerList";
 import dummyData from "../../dummy-data";
 
+// The PostPage
 class PostPage extends React.Component {
   constructor() {
     super();
     this.state = {
       posts: [],
-      userInput: ""
+      userInput: "",
+      searchReturn: true,
+      tempPosts: []
     };
   }
 
+  // Component will mount
   componentWillMount() {
     localStorage.getItem("posts") &&
       this.setState({
-        posts: JSON.parse(localStorage.getItem("posts"))
+        posts: JSON.parse(localStorage.getItem("posts")),
+        tempPosts: JSON.parse(localStorage.getItem("posts"))
       });
-    console.log(
-      "-----------componenet will mount -----------" +
-        localStorage.getItem("username")
-    );
   }
 
+  // Component did mount
   componentDidMount() {
-    console.log("**********  component did mount  ************");
     if (!localStorage.getItem("posts")) {
       this.setState({
-        posts: dummyData
+        posts: dummyData,
+        tempPosts: dummyData
       });
+      localStorage.setItem("posts", JSON.stringify(dummyData));
     } else {
       console.log("Using data from local storage");
     }
   }
 
+  // Search posts
   searchPosts = e => {
-    console.log("**********  search posts  ************");
     e.preventDefault();
-    console.log("Value of the event is " + this.state.userInput);
-    this.setState(prevState => {
-      const filteredPosts = prevState.posts.filter(post => {
-        return post.username.includes(this.state.userInput);
+    console.log("****** SEARCH POSTS *********" + this.state.searchReturn);
+    console.log("****** SEARCH POSTS *********" + this.state.posts.length);
+    if (this.state.userInput !== "") {
+      this.setState(prevState => {
+        const filteredPosts = prevState.posts.filter(post => {
+          return post.username.includes(this.state.userInput);
+        });
+        if (filteredPosts.length !== 0) {
+          console.log("filtered posts length is not zero");
+          return {
+            posts: filteredPosts,
+            userInput: "",
+            searchReturn: true
+          };
+        } else {
+          console.log("filtered posts length is zero");
+          return {
+            posts: this.state.tempPosts,
+            userInput: "",
+            searchReturn: false
+          };
+        }
       });
-      return {
-        posts: filteredPosts,
-        userInput: ""
-      };
-    });
+    } else {
+      console.log(
+        "-------- user input is empty ----------" + this.state.posts.length
+      );
+      this.setState(prevState => {
+        console.log(
+          "-------- user input is empty ----------" + prevState.posts.length
+        );
+        return {
+          posts: this.state.tempPosts
+        };
+      });
+    }
   };
 
   handleChange = e => {
@@ -58,7 +87,14 @@ class PostPage extends React.Component {
   };
 
   componentWillUpdate(nextProps, nextState) {
-    localStorage.setItem("posts", JSON.stringify(nextState.posts));
+    console.log("***********COMPONENT WILL UPDATE***************");
+    console.log(
+      "***********THIS.STATE***************" + this.state.posts.length
+    );
+    console.log(
+      "***********NEXT STATE***************" + nextState.posts.length
+    );
+    localStorage.setItem("posts", JSON.stringify(this.state.tempPosts));
   }
 
   addComments = (userComment, postId) => {
@@ -80,6 +116,7 @@ class PostPage extends React.Component {
       });
       return {
         posts: updatedPosts,
+        tempPosts: updatedPosts,
         userInput: ""
       };
     });
@@ -95,12 +132,19 @@ class PostPage extends React.Component {
       });
       return {
         posts: updatedPosts,
+        tempPosts: updatedPosts,
         userInput: ""
       };
     });
   };
 
   render() {
+    console.log("*********** RENDER ***************" + this.state.searchReturn);
+    let searchReturnVal = "";
+    if (!this.state.searchReturn) {
+      searchReturnVal = `<p className="searchWarning">Search returned empty</p>`;
+    }
+
     return (
       <div className="App">
         <header>
@@ -109,6 +153,7 @@ class PostPage extends React.Component {
             userInput={this.state.userInput}
             handleChange={this.handleChange}
           />
+          {searchReturnVal}
           <PostContainerList
             posts={this.state.posts}
             onSubmit={this.addComments}
