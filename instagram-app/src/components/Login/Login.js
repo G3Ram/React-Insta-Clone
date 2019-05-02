@@ -1,4 +1,5 @@
 import React from "react";
+import "./Login.css";
 
 class Login extends React.Component {
   state = {
@@ -27,9 +28,9 @@ class Login extends React.Component {
     this.setState({ password: e.target.value });
   };
 
-  componentWillMount() {
-    window.location.reload();
-  }
+  //   componentWillMount() {
+  //     window.location.reload();
+  //   }
 
   componentWillUnmount() {
     localStorage.removeItem("username");
@@ -38,21 +39,41 @@ class Login extends React.Component {
   render() {
     return (
       <div>
-        <form>
-          <input
-            type="text"
-            placeholder="username"
-            onChange={this.handleChangeUserName}
-            value={this.state.username}
-          />
-          <input
-            type="text"
-            placeholder="password"
-            onChange={this.handleChangePassword}
-            value={this.state.password}
-          />
-          <button onClick={this.login}>Login</button>
-        </form>
+        <div className="loginForm">
+          <form className="formContent" onSubmit={this.login}>
+            <img
+              className="loginLogo"
+              src="../img/instagramText.png"
+              alt="instagram text"
+            />
+            <input
+              type="text"
+              placeholder="username"
+              className="userInput"
+              onChange={this.handleChangeUserName}
+              value={this.state.username}
+            />
+            <input
+              type="text"
+              placeholder="password"
+              className="userInput"
+              onChange={this.handleChangePassword}
+              value={this.state.password}
+            />
+            <button className="loginBtn" onClick={this.login}>
+              Login
+            </button>
+            <img
+              className="forgotPassword"
+              src="../img/loginImgFB.png"
+              alt="forgot password text"
+            />
+          </form>
+        </div>
+        <div className="signupForm">
+          Don't have an account? <span class="signUpTxt">Sign Up</span>
+        </div>
+        <img className="footer" src="../img/footer.png" alt="footer" />
       </div>
     );
   }

@@ -1,0 +1,75 @@
+.loginForm {
+  margin-top: 1%;
+  margin-bottom: 1%;
+  margin-left: 38%;
+  width: 24%;
+  height: 370px;
+  border: 1px solid lightgray;
+}
+
+.formContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.signupForm {
+  margin-top: 0%;
+  margin-left: 38%;
+  width: 23%;
+  height: 36px;
+  border: 1px solid lightgray;
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 20px 5px 5px 5px;
+}
+
+.loginLogo {
+  width: 174px;
+  margin-top: 8%;
+  margin-left: 24%;
+  margin-bottom: 9%;
+}
+
+.userInput {
+  width: 76%;
+  height: 32px;
+  margin: 2% 0 0% 10%;
+  padding-left: 6px;
+}
+
+.userInput::placeholder {
+  font-size: 0.75rem;
+}
+
+.userInput:focus {
+  outline: 0;
+}
+
+.loginBtn {
+  margin-top: 3%;
+  margin-left: 10%;
+  width: 78%;
+  height: 30px;
+  border-radius: 3px;
+  color: white;
+  background-color: #4286f4;
+  font-size: 0.85rem;
+}
+
+.loginBtn:focus {
+  outline: 0;
+}
+
+.forgotPassword {
+  height: 100px;
+  margin-top: 5%;
+}
+
+.signUpTxt {
+  color: darkblue;
+}
+
+.footer {
+  width: 25%;
+  margin-left: 37.5%;
+}
