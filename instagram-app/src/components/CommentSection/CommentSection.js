@@ -1,5 +1,4 @@
 import React from "react";
-import "./CommentSection.css";
 import PropsType from "prop-types";
 import styled from "styled-components";
 
@@ -12,6 +11,63 @@ const LikeHeart = styled.img`
   height: 20px;
   margin-top: 15px;
   cursor: pointer;
+`;
+
+const CommenterName = styled.span`
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  margin-right: 10px;
+`;
+
+const CommentText = styled.span`
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+`;
+
+const CommentSectionSection = styled.section`
+  padding-bottom: 5px;
+  margin-left: 15px;
+`;
+
+const AddCommentText = styled.input`
+  width: 85%;
+  height: 50px;
+  border: 0px;
+  margin-left: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+
+  :focus {
+    outline: 0;
+  }
+
+  ::placeholder {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    color: lightgray;
+  }
+`;
+
+const AddCommentContainer = styled.div`
+  display: flex;
+  border-top: 1px solid lightgray;
+`;
+
+const AddCommentBtn = styled.button`
+  width: 14%;
+  font-family: Arial, Helvetica, sans-serif;
+  color: lightgray;
+  font-size: 1rem;
+  background-color: white;
+  border: 0px;
+
+  :hover {
+    color: darkgray;
+  }
+
+  :focus {
+    outline: 0;
+  }
 `;
 
 class CommentSection extends React.Component {
@@ -54,33 +110,27 @@ class CommentSection extends React.Component {
         </PostCommentsHeader>
         <div>
           {this.props.comments.map((comment, index) => (
-            <section key={index} className="commentSection">
-              <span className="commenterName">
+            <CommentSectionSection key={index}>
+              <CommenterName>
                 <strong>{comment.username}</strong>
-              </span>
-              <span className="commentText">{comment.text} </span>
-            </section>
+              </CommenterName>
+              <CommentText>{comment.text} </CommentText>
+            </CommentSectionSection>
           ))}
         </div>
         <form onSubmit={this.addComments}>
-          <div className="addCommentContainer">
-            <input
+          <AddCommentContainer>
+            <AddCommentText
               type="text"
               name="comment"
-              className="addCommentText"
               placeholder="Add a comment"
               value={this.state.userComment}
               onChange={this.handleChanges}
             />
-            <button
-              type="submit"
-              name="add"
-              className="addCommentBtn"
-              onClick={this.addComments}
-            >
+            <AddCommentBtn type="submit" name="add" onClick={this.addComments}>
               Post
-            </button>
-          </div>
+            </AddCommentBtn>
+          </AddCommentContainer>
         </form>
       </div>
     );
