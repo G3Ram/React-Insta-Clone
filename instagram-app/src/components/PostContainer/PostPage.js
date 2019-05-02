@@ -3,7 +3,6 @@ import "../../App.css";
 import SearchBar from "../SearchBar/SearchBar";
 import PostContainerList from "./PostContainerList";
 import dummyData from "../../dummy-data";
-//import styled from "styled-components";
 
 // The PostPage
 class PostPage extends React.Component {
@@ -66,13 +65,7 @@ class PostPage extends React.Component {
         }
       });
     } else {
-      console.log(
-        "-------- user input is empty ----------" + this.state.posts.length
-      );
       this.setState(prevState => {
-        console.log(
-          "-------- user input is empty ----------" + prevState.posts.length
-        );
         return {
           posts: this.state.tempPosts
         };
@@ -88,26 +81,14 @@ class PostPage extends React.Component {
   };
 
   componentWillUpdate(nextProps, nextState) {
-    console.log("***********COMPONENT WILL UPDATE***************");
-    console.log(
-      "***********THIS.STATE***************" + this.state.posts.length
-    );
-    console.log(
-      "***********NEXT STATE***************" + nextState.posts.length
-    );
     localStorage.setItem("posts", JSON.stringify(this.state.tempPosts));
   }
 
   addComments = (userComment, postId) => {
-    console.log(
-      "----------INVOKING USER COMMENTS ---------------" +
-        localStorage.getItem("username")
-    );
     const newUserComment = {
       username: localStorage.getItem("username"),
       text: userComment
     };
-    console.log("user comments " + newUserComment.text);
     this.setState(prevState => {
       const updatedPosts = prevState.posts.map((post, index) => {
         if (index === postId) {
@@ -140,7 +121,6 @@ class PostPage extends React.Component {
   };
 
   render() {
-    console.log("*********** RENDER ***************" + this.state.searchReturn);
     let searchReturnVal = "";
     if (!this.state.searchReturn) {
       searchReturnVal = `<p className="searchWarning">Search returned empty</p>`;

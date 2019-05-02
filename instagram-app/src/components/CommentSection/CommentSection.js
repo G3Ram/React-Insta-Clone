@@ -1,6 +1,18 @@
 import React from "react";
 import "./CommentSection.css";
 import PropsType from "prop-types";
+import styled from "styled-components";
+
+const PostCommentsHeader = styled.section`
+  margin-left: 15px;
+`;
+
+const LikeHeart = styled.img`
+  width: 20px;
+  height: 20px;
+  margin-top: 15px;
+  cursor: pointer;
+`;
 
 class CommentSection extends React.Component {
   state = {
@@ -16,14 +28,6 @@ class CommentSection extends React.Component {
 
   addComments = e => {
     e.preventDefault();
-    console.log(
-      "---------------COMMENT SECTION -----------ADD COMMENTS ---" +
-        this.state.userComment
-    );
-    console.log(
-      "---------------COMMENT SECTION -----------ADD COMMENTS ---" +
-        this.props.postId
-    );
     this.props.onSubmit(this.state.userComment, this.props.postId);
     this.setState({ userComment: "" });
   };
@@ -35,24 +39,19 @@ class CommentSection extends React.Component {
       };
     });
     this.props.updateLikes(this.state.likes, this.props.postId);
-    console.log(
-      "********* POST CONTIANER :: HANDLE CLICK ********* LIKES IN STATE IS " +
-        this.state.likes
-    );
   };
 
   render() {
     return (
       <div>
-        <section className="postCommentsHeader">
-          <img
+        <PostCommentsHeader>
+          <LikeHeart
             src="../img/iconHeart.png"
-            className="likeHeart"
             onClick={this.handleClick}
             alt="heart icon"
           />
           <p>{this.state.likes} likes</p>
-        </section>
+        </PostCommentsHeader>
         <div>
           {this.props.comments.map((comment, index) => (
             <section key={index} className="commentSection">
