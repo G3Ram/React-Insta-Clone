@@ -18,6 +18,10 @@ class PostPage extends React.Component {
       this.setState({
         posts: JSON.parse(localStorage.getItem("posts"))
       });
+    console.log(
+      "-----------componenet will mount -----------" +
+        localStorage.getItem("username")
+    );
   }
 
   componentDidMount() {
@@ -58,8 +62,14 @@ class PostPage extends React.Component {
   }
 
   addComments = (userComment, postId) => {
-    console.log("----------INVOKING USER COMMENTS ---------------");
-    const newUserComment = { username: "G3Ram", text: userComment };
+    console.log(
+      "----------INVOKING USER COMMENTS ---------------" +
+        localStorage.getItem("username")
+    );
+    const newUserComment = {
+      username: localStorage.getItem("username"),
+      text: userComment
+    };
     console.log("user comments " + newUserComment.text);
     this.setState(prevState => {
       const updatedPosts = prevState.posts.map((post, index) => {

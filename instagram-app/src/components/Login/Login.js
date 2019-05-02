@@ -32,9 +32,9 @@ class Login extends React.Component {
   //     window.location.reload();
   //   }
 
-  componentWillUnmount() {
-    localStorage.removeItem("username");
-  }
+  //   componentWillUnmount() {
+  //     localStorage.removeItem("username");
+  //   }
 
   render() {
     return (
@@ -71,7 +71,7 @@ class Login extends React.Component {
           </form>
         </div>
         <div className="signupForm">
-          Don't have an account? <span class="signUpTxt">Sign Up</span>
+          Don't have an account? <span className="signUpTxt">Sign Up</span>
         </div>
         <img className="footer" src="../img/footer.png" alt="footer" />
       </div>

@@ -23,7 +23,7 @@ function SearchBar(props) {
             <input
               type="text"
               className="searchText"
-              placeholder="&#xf040; Search"
+              placeholder="Search"
               value={props.userInput}
               onChange={props.handleChange}
             />
