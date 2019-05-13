@@ -1,0 +1,33 @@
+.searchText {
+  width: 205px;
+  height: 23px;
+  margin-top: 1%;
+  font-family: FontAwesome, "Merriweather Sans", sans-serif;
+}
+
+.searchText::placeholder {
+  text-align: center;
+}
+
+.searchText:focus {
+  outline: 0;
+}
+
+.searchSection {
+  margin-left: 20%;
+}
+
+.verticalLine {
+  margin-left: 20px;
+  border-left: 1px solid gray;
+  height: 30px;
+  margin-top: 3px;
+}
+
+.headerSection {
+  display: flex;
+}
+
+.accessorySection {
+  display: flex;
+}
